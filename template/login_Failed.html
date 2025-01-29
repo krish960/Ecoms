@@ -1,0 +1,49 @@
+{% include "navbar.html" %}
+
+<style type="text/css">
+@keyframes slideLeftToRight {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Applying animation to the h1 element */
+#login {
+    display: inline-block;
+    animation: slideLeftToRight 3s ease-in-out infinite;
+}
+			</style>
+<div class="container-fluid bg-white " style="margin-bottom: 220px;">
+	<div class="row">
+		<div class="col-md-12 mb-3 mt-3">
+
+			<h1 class="text-center" id="login">Login Failed</h1>
+		</div>
+
+		 <form method="post" action="/login_process/">
+		            {% csrf_token %}
+		<div class="col-md-6 mb-3  text-center" style="margin-left: 300px;">
+			<input type="number" name="customer_mobile" placeholder="Enter Your Number.." class="form-control text-center mail_section_1" style="box-shadow: 5px 10px 20px 5px;border-radius: 15px;">
+		</div>
+		<div class="col-md-6 mb-b  text-center"style="margin-bottom: 30px;margin-left: 300px;">
+			<input type="number" name="customer_password" placeholder="Enter Your Password.." class="form-control text-center mail_section_1" style="box-shadow: 5px 10px 20px 5px;border-radius: 15px;">
+		</div>
+		<div class="col-md-12 mb-5 text-center" >
+			<button class="col-md-6 btn bg-primary">Login</button>
+		</div>
+	</form>
+	</div>
+</div>
+
+
+
+{% include "footer.html" %}

@@ -1,0 +1,130 @@
+{% include "navbar.html" %}
+
+			<div class="hero">
+				<div class="container">
+					<div class="row justify-content-between">
+						<div class="col-lg-5">
+							<div class="intro-excerpt">
+								<h1>Cart</h1>
+							</div>
+						</div>
+						<div class="col-lg-7">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+
+		
+
+		<div class="untree_co-section before-footer-section">
+            <div class="container">
+              <div class="row mb-5">
+                <form class="col-md-12" method="post">
+                  <div class="site-blocks-table">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="product-thumbnail">Image</th>
+                          <th class="product-name">Product</th>
+                          <th class="product-price">Price</th>
+                          <th class="product-quantity">Quantity</th>
+                          <th class="product-total">Total</th>
+                          <th class="product-remove">Remove</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for i in carts %}
+                        <tr>
+                          <td class="product-thumbnail">
+                            <img src="/{{i.product.product_image}}" alt="Image" class="img-fluid">
+                          </td>
+                          <td class="product-name">
+                            <h2 class="h5 text-black">{{i.product.product_name}}</h2>
+                          </td>
+                          <td>&#8377;{{i.product.product_price}}</td>
+                          <td>
+                            <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+                              <div class="input-group-prepend">
+                                <button class="btn btn-outline-primary decrease" type="button">&minus;</button>
+                              </div>
+                             <input type="text" id="qty_input{{forloop.counter}}"  class="form-control text-center quantity-amount" value="{{i.qty}}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+
+                              <div class="input-group-append">
+                                <button class="btn btn-outline-primary increase" type="button" onclick="increaeseQty('qty_input{{forloop.counter}}','{{i.id}}')">&plus;</button>
+                              </div>
+                            </div>
+        
+                          </td>
+                          <td>{{ i.total }}</td>
+                          <td> <a href="/delete_product/?id={{ i.id }}" class="btn btn-danger btn-sm">X</a></td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </form>
+              </div>
+        
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row mb-5">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                         <a href="/shop"><button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping </button></a>
+                    </div>
+                    <div class="col-md-6">
+                      
+                       
+
+                     
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-black h4" for="coupon">Coupon</label>
+                      <p>Enter your coupon code if you have one.</p>
+                    </div>
+                    <div class="col-md-8 mb-3 mb-md-0">
+                      <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+                    </div>
+                    <div class="col-md-4">
+                      <button class="btn btn-primary">Apply Coupon</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-5">
+                  <div class="row justify-content-end">
+                    <div class="col-md-7">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='/checkout/'">Proceed To Checkout</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+<script>
+  function increaeseQty(qty_input,cart_id)
+  {
+      var qty=document.getElementById(qty_input).value;
+
+      $.ajax({"url":"/increaese_cart_qty",
+              "data":{"qty":qty,"cart_id":cart_id}
+      }).done(function(result){
+        console.log(result);
+        location.reload();
+      });
+  
+  }
+</script>		
+
+		<!-- Start Footer Section -->
+
+
+{% include "footer.html" %}

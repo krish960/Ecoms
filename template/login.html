@@ -1,0 +1,31 @@
+{% include "navbar.html" %}
+
+
+<div class="container mt-5 mb-5">
+	<div class="row justify-content-center">
+		<div class="col-md-5">
+		    <div class="form-container">
+		        <h1 class="text-center">Login Account</h1>
+		        <form method="post" action="/login_process/">
+		            {% csrf_token %}
+		           
+		            <div class="">
+		                <label for="id_customer_mobile">Mobile</label>
+		                <input type="text" class="form-control" id="id_customer_mobile" name="customer_mobile" placeholder="Enter your mobile number" required>
+		            </div>
+		            <div class="">
+		                <label for="id_customer_password">Password</label>
+		                <input type="password" class="form-control" id="id_customer_password" name="customer_password" placeholder="Enter your password" required>
+		            </div>
+		            <div class="mt-4 text-center">
+		            <button type="submit" class="btn btn-primary">Login Account</button>
+		        </div>
+		        </form>
+    		</div>
+    	</div>
+    </div>
+</div>
+
+
+
+{% include "footer.html" %}
